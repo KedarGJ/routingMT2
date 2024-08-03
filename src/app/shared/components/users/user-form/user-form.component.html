@@ -1,0 +1,25 @@
+<div class="card">
+    <div class="card-header">
+        <h2>{{isinEditMode ? 'Update User' : 'Add User'}}</h2>
+    </div>
+
+    <div class="card-body">
+        <form [formGroup]="userForm" (ngSubmit)="onUserAdd()">
+            <div class="form-group">
+                <label for="userName">UserName</label>
+                <input type="text" class="form-control" formControlName="userName" id="userName">
+            </div>
+            <div class="form-group">
+                <label for="userRole">User Role</label>
+                <select class="form-control" id="userRole" formControlName="userRole">
+                    <option value="admin">Admin</option>
+                    <option value="buyer">Buyer</option>
+                </select>
+            </div>
+            <button class="btn btn-sm btn-primary" type="submit" *ngIf="!isinEditMode">Add User</button>
+            <button 
+            [disabled] ="userRole === 'buyer'"
+            class="btn btn-sm btn-primary" (click)="onUpdateUser()" *ngIf="isinEditMode">Update User</button>
+        </form>
+    </div>
+</div>
